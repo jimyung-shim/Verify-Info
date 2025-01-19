@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FactCheck AI</title>
+  <link rel="stylesheet" href="gpt.css">
+</head>
+<body>
+  <header class="navbar">
+    <h1>FactCheck AI</h1>
+  </header>
+
+  <main class="container">
+    <div class="form-container">
+      <h2>Ask the AI</h2>
+      <form id="ai-form">
+        <textarea id="user-input" placeholder="Enter your question..." rows="5" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="result-container">
+      <h2>AI's Response</h2>
+      <p id="response">Enter a question to get started.</p>
+    </div>
+  </main>
+
+  <script>
+    // 폼 제출 이벤트 처리
+    document.getElementById("ai-form").addEventListener("submit", async (e) => {
+      e.preventDefault(); // 기본 폼 동작 중단
+  
+      // 사용자 입력 가져오기
+      const input = document.getElementById("user-input").value;
+  
+      // 백엔드 서버로 요청 보내기
+      try {
+        const response = await fetch("http://localhost:5000/api", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: input }),
+        });
+  
+        // 백엔드에서 반환된 데이터 가져오기
+        const data = await response.json();
+  
+        // 결과를 화면에 표시
+        document.getElementById("response").textContent = data.answer;
+      } catch (error) {
+        console.error("Error:", error);
+        document.getElementById("response").textContent =
+          "An error occurred. Please try again.";
+      }
+    });
+  </script>
+  </body>
+</html>
