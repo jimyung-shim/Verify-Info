@@ -51,6 +51,15 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 입력 창 */
+.user-input{
+  margin-top: 20px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  width: 775px;
+  border: none;
+}
 
 textarea {
   width: 100%;
