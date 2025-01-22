@@ -1,0 +1,85 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  header.main-header {
+    background-color: #6A1B9A;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header.main-header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  header.main-header nav a.active {
+    text-decoration: underline;
+  }
+  
+  .main-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 게시글 작성 섹션 */
+  .create-post {
+    margin-bottom: 20px;
+  }
+  
+  .create-post textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+  
+  .create-post button {
+    background-color: #6A1B9A;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .create-post button:hover {
+    background-color: #501874;
+  }
+  
+  /* 게시글 리스트 */
+  .posts .post {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .posts .post h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #6A1B9A;
+  }
+  
+  .posts .post p {
+    margin: 10px 0;
+  }
+  
+  .posts .timestamp {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
