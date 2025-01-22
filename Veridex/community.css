@@ -17,9 +17,12 @@ body {
   }
   
   header.main-header nav a {
+    background-color: #FF9800;
     color: white;
     text-decoration: none;
     margin: 0 10px;
+    padding: 8px 16px;
+    border-radius: 16px;  
   }
   
   header.main-header nav a.active {
