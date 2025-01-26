@@ -2,6 +2,7 @@
   "name": "veridex",
   "version": "1.0.0",
   "main": "main_page.js",
+  "type": "module",
   "scripts": {
     "start": "node main_page.js",
     "test": "echo \"Error: no test specified\" && exit 1"
