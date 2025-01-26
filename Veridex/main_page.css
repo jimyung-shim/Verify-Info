@@ -7,16 +7,14 @@ body {
   color: #3c3c3c;
 }
 
-
 /* 내비게이션 바 */
 .navbar {
   background-color: #6A1B9A;
   padding: 20px 20px;
   display: flex;
   justify-content: space-between;
-  text-align: center;
+  align-items: center;
   color: white;
-  
 }
 
 .navbar .logo {
@@ -26,19 +24,18 @@ body {
 
 .navbar nav a {
   text-decoration: none;
-  color: white;
   margin: 0 10px;
+}
+
+/* nav-link 스타일 */
+.navbar nav a.nav-link {
+  color: white;
   font-weight: bold;
 }
 
-.navbar nav a.cta {
-  background-color: #FF9800;
-  padding: 8px 16px;
-  border-radius: 16px;
-}
-
-.navbar nav a.cta:hover {
-  background-color: #E57C00;
+.navbar nav a.nav-link:hover {
+  color: #FF9800;
+  text-decoration: underline;
 }
 
 /* 메인 컨테이너 */
@@ -51,16 +48,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 입력 창 */
-.user-input{
-  margin-top: 20px;
-  padding: 10px;
-  background: #f5f5f5;
-  border-radius: 16px;
-  width: 775px;
-  border: none;
-}
-
+/* 입력 폼 */
 textarea {
   width: 100%;
   padding: 10px;
@@ -68,6 +56,15 @@ textarea {
   border-radius: 16px;
   font-size: 16px;
   margin-bottom: 10px;
+  background: #fafafa;
+  color: #3c3c3c;
+  resize: none;
+}
+
+textarea:focus {
+  border-color: #6A1B9A;
+  outline: none;
+  box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
 }
 
 button {
@@ -78,16 +75,45 @@ button {
   border-radius: 16px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #501874;
+  transform: scale(1.05);
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
+/* 결과 컨테이너 */
 .result-container {
   margin-top: 20px;
   padding: 10px;
   background: #f5f5f5;
   border-radius: 16px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 결과 초기 상태 */
+.response-placeholder {
+  color: #666;
+  font-style: italic;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
 }
