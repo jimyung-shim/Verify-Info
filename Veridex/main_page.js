@@ -4,7 +4,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 
-dotenv.config();
+dotenv.config(); // .env 로드
+
+// API 키 로드 확인
+console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
 
 const app = express();
 const port = 5000;
@@ -40,7 +43,7 @@ app.post("/api", async (req, res) => {
     const answer = response.choices[0].message.content.trim();
     res.json({ answer });
   } catch (error) {
-    console.error("Error during OpenAI API call:", error.message);
+    console.error("Error during OpenAI API call:", error.response?.data ||  error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
 });

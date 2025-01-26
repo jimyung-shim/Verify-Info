@@ -1,0 +1,95 @@
+{
+  "name": "@stdlib/assert",
+  "version": "0.3.3",
+  "description": "Standard assertion utilities.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "The Stdlib Authors",
+    "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+  },
+  "contributors": [
+    {
+      "name": "The Stdlib Authors",
+      "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+    }
+  ],
+  "main": "lib/index.js",
+  "directories": {
+    "doc": "./docs",
+    "lib": "./lib"
+  },
+  "types": "./docs/types",
+  "scripts": {},
+  "homepage": "https://stdlib.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stdlib-js/assert.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stdlib-js/stdlib/issues"
+  },
+  "dependencies": {
+    "@stdlib/array": "^0.3.2",
+    "@stdlib/boolean": "^0.3.2",
+    "@stdlib/cli": "^0.3.2",
+    "@stdlib/complex": "^0.3.2",
+    "@stdlib/constants": "^0.3.2",
+    "@stdlib/fs": "^0.3.2",
+    "@stdlib/function": "^0.3.2",
+    "@stdlib/math": "^0.3.2",
+    "@stdlib/ndarray": "^0.3.2",
+    "@stdlib/number": "^0.3.2",
+    "@stdlib/object": "^0.3.2",
+    "@stdlib/os": "^0.3.2",
+    "@stdlib/process": "^0.3.2",
+    "@stdlib/regexp": "^0.3.2",
+    "@stdlib/slice": "^0.3.2",
+    "@stdlib/streams": "^0.3.2",
+    "@stdlib/string": "^0.3.2",
+    "@stdlib/symbol": "^0.3.2",
+    "@stdlib/time": "^0.3.2",
+    "@stdlib/types": "^0.4.2",
+    "@stdlib/utils": "^0.3.2",
+    "@stdlib/wasm": "^0.1.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">2.7.0"
+  },
+  "os": [
+    "aix",
+    "darwin",
+    "freebsd",
+    "linux",
+    "macos",
+    "openbsd",
+    "sunos",
+    "win32",
+    "windows"
+  ],
+  "keywords": [
+    "stdlib",
+    "stdassert",
+    "assertion",
+    "assert",
+    "expectation",
+    "expect",
+    "utilities",
+    "utility",
+    "utils",
+    "util",
+    "test",
+    "check",
+    "validate",
+    "validation",
+    "valid",
+    "is",
+    "isvalid",
+    "type"
+  ],
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/stdlib"
+  }
+}
