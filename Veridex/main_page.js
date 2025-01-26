@@ -1,22 +1,26 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Configuration,OpenAIApi } = require("openai");
+const { OpenAIApi, Configuration } = require("openai");
 require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
 const port = 5000;
+
+// CORS 활성화
+app.use(cors());
+
+// JSON 요청 파싱
+app.use(bodyParser.json());
 
 // OpenAI API 설정
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY, // .env 파일의 API 키 가져오기
 });
-
 const openai = new OpenAIApi(configuration);
 
-// JSON 요청 파싱
-app.use(bodyParser.json());
 
-// 엔드포인트: /api
+// API 엔드포인트
 app.post("/api", async (req, res) => {
   const { question } = req.body;
 
@@ -39,58 +43,9 @@ app.post("/api", async (req, res) => {
   }
 });
 
-// 서버 시작
+// 서버 실행
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-const cors = require("cors");
-app.use(cors());
 
-console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
-
-app.post("/api", async (req, res) => {
-  const { question } = req.body;
-
-  if (!question) {
-    return res.status(400).json({ error: "Question is required" });
-  }
-
-  try {
-    console.log("Received question:", question); // 디버깅용
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: question }],
-    });
-
-    const answer = response.choices[0].message.content.trim();
-    console.log("AI Response:", answer); // 디버깅용
-    res.json({ answer });
-  } catch (error) {
-    console.error("Error during OpenAI API call:", error.message); // 에러 메시지 출력
-    res.status(500).json({ error: "Something went wrong" });
-  }
-});
-
-document.getElementById("ai-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const input = document.querySelector(".user-input").value;
-  console.log("User Input:", input); // 디버깅용
-
-  try {
-    const response = await fetch("http://localhost:5000/api", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: input }),
-    });
-
-    const data = await response.json();
-    console.log("AI Response:", data.answer); // 디버깅용
-    document.getElementById("response").textContent = data.answer;
-  } catch (error) {
-    console.error("Error:", error);
-    document.getElementById("response").textContent =
-      "An error occurred. Please try again.";
-  }
-});
