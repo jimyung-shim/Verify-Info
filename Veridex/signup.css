@@ -1,0 +1,87 @@
+/* 회원가입 페이지 전체 레이아웃 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* 회원가입 컨테이너 */
+  .signup-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* 회원가입 폼 스타일 */
+  .signup-form h2 {
+    margin-bottom: 20px;
+    color: #6A1B9A;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .input-group input:focus {
+    border-color: #6A1B9A;
+    outline: none;
+  }
+  
+  /* 회원가입 버튼 */
+  .signup-button {
+    width: 100%;
+    background-color: #6A1B9A;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .signup-button:hover {
+    background-color: #501874;
+  }
+  
+  /* 로그인 링크 */
+  .login-link {
+    margin-top: 15px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .login-link a {
+    color: #6A1B9A;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
