@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 dotenv.config();
 
@@ -17,10 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // OpenAI API 설정
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // .env 파일의 API 키 가져오기
 });
-const openai = new OpenAIApi(configuration);
 
 
 // API 엔드포인트
@@ -34,9 +33,14 @@ app.post("/api", async (req, res) => {
   try {
     // OpenAI API 호출
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo", // GPT 모델 설정
-      messages: [{ role: "user", content: question }],
+      model: "gpt-4o-mini", // GPT 모델 설정
+      store: true,
+      messages: [
+        { "role": "user", "content": "question" }
+      ],
     });
+
+    completion.then((result) => console.log(result.choices[0].message));
 
     const answer = response.data.choices[0].message.content.trim();
     res.json({ answer });
