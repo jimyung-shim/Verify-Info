@@ -31,8 +31,7 @@ app.post("/api", async (req, res) => {
   try {
     // OpenAI API 호출
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini", // GPT 모델 설정
-      store: true,
+      model: "gpt-3.5-turbo", // GPT 모델 설정
       messages: [
         { role: "user", content: question },
       ],
