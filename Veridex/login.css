@@ -10,6 +10,10 @@ body {
     height: 100vh;
   }
   
+.back_to_home{
+  color: #6A1B9A;
+}
+
   /* 로그인 컨테이너 */
   .login-container {
     background-color: white;

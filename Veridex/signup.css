@@ -10,6 +10,10 @@ body {
     height: 100vh;
   }
   
+  .back_to_home{
+    color: #6A1B9A;
+  }  
+
   /* 회원가입 컨테이너 */
   .signup-container {
     background-color: white;

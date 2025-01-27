@@ -33,6 +33,11 @@ body {
   font-weight: bold;
 }
 
+.navbar nav a.nav-link.active {
+  text-decoration: underline;
+  color: #FF9800;
+}
+
 .navbar nav a.nav-link:hover {
   color: #FF9800;
   text-decoration: underline;
