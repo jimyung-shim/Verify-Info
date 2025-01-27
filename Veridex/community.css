@@ -125,3 +125,35 @@ button:active {
     font-size: 14px;
   }
 }
+
+/* 제목 입력 */
+.input-title {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  background: #fafafa;
+  color: #3c3c3c;
+}
+
+.input-title:focus {
+  border-color: #6A1B9A;
+  outline: none;
+  box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+}
+
+/* 버튼 컨테이너 */
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .input-title {
+    font-size: 14px;
+  }
+}
