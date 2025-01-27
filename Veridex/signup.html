@@ -4,32 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
+  <!-- 회원가입 페이지 전용 스타일 -->
   <link rel="stylesheet" href="signup.css">
+  <!-- Font Awesome 아이콘 라이브러리 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="signup-container">
+    <!-- 홈으로 돌아가는 링크 -->
     <a href="main_page.html" class="back_to_home"><i class="fa-solid fa-home" title="Home"></i></a>
     <div class="signup-form">
       <h2>Sign Up</h2>
+      <!-- 회원가입 폼 -->
       <form>
+        <!-- 사용자 이름 입력 -->
         <div class="input-group">
           <label for="username">Username</label>
           <input type="text" id="username" placeholder="Enter your username" required>
         </div>
+        <!-- 이메일 입력 -->
         <div class="input-group">
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="Enter your email" required>
         </div>
+        <!-- 비밀번호 입력 -->
         <div class="input-group">
           <label for="password">Password</label>
           <input type="password" id="password" placeholder="Create a password" required>
         </div>
+        <!-- 비밀번호 확인 -->
         <div class="input-group">
           <label for="confirm-password">Confirm Password</label>
           <input type="password" id="confirm-password" placeholder="Confirm your password" required>
         </div>
+        <!-- 회원가입 버튼 -->
         <button type="submit" class="signup-button">Sign Up</button>
+        <!-- 로그인 링크 -->
         <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
       </form>
     </div>
