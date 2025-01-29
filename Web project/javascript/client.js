@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e) => {
 
   try {
     // 서버에 질문 전송
-    const res = await fetch("http://localhost:5000/api", {
+    const res = await fetch("http://localhost:3000/api", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
