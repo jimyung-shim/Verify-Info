@@ -7,9 +7,9 @@ AI를 활용하여 정보를 분석하고, AI를 통해 알 수 없는 정보는
 ## 🎯 주요 기능
 ### ✅ AI 기반 정보 검증 시스템
 - 사용자가 **정보 또는 URL을 제출**하면 AI가 자료들을 제공.
-- 현재 main 브랜치에 OpenAI API 서버 페이지(server.js)와 Groq API 서버 페이지(groq.js)가 있는데, OpenAI API 서버 페이지는 Chat GPT를, Groq API 페이지는 Llama를 사용할 수 있니다.
+- 현재 main 브랜치에 OpenAI API 서버 페이지(server.js)와 Groq API 서버 페이지(groq.js)가 있는데, OpenAI API 서버 페이지는 Chat GPT를, Groq API 페이지는 Llama를 사용할 수 있습니다.
 아직 OpenAI API 비용을 결재하지 않아 Chat GPT는 작동할 수 없고, 대신에 임시방편으로 Groq API키를 가져와
-제한적으로나마 무료로 사용할 수 있는 Llama를 탑재한 버전 있으니 당분간은 AI기능 테스트 해볼 때 이걸로 해주세요.
+제한적으로나마 무료로 사용할 수 있는 Llama를 탑재한 버전이 있습니다.
 
 ### ✅ 커뮤니티 게시판
 - 사용자가 직접 **게시글을 작성하고, 정보를 공유**할 수 있는 공간.
@@ -77,4 +77,3 @@ Server running at http://localhost:3000
 ## 📜 라이선스
 이 프로젝트는 MIT 라이선스를 따릅니다.
 
-커밋 히스토리에서 쓸데없는 커밋이 많은건 제가 깃 명령어 써보려고 연습하다보니 이렇게 됐습니다... 양해 부탁드립니다
