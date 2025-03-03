@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import Groq from "groq-sdk";
@@ -21,7 +20,7 @@ console.log("Loaded API Key:", process.env.GROQ_API_KEY);
 app.use(cors());
 
 // JSON 요청 파싱
-app.use(bodyParser.json());
+app.use(express.json());
 
 // 정적 파일 제공 (HTML, CSS, JS 파일)
 app.use(express.static(__dirname));
