@@ -27,6 +27,8 @@ AI를 활용하여 정보를 분석하고, AI를 통해 알 수 없는 정보는
 - Node.js (Express.js 기반 서버)
 - MongoDB 또는 Firebase 사용 예정
 - OpenAI API (AI 분석 기능)
+- 사용된 라이브러리 패키지: express, cors, dotenv, openai, groq-sdk
+
 
 ## 🚀 프로젝트 실행 방법
 ### 1️⃣ **환경 변수 파일 (.env) 설정**
