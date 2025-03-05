@@ -37,10 +37,10 @@
   <main class="container" role="main">
     <!-- 사용자 질문 입력 폼 -->
     <div class="form-container">
-      <h2>Ask the AI</h2>
+      <h2 class="robotIcon"><i class="fas fa-robot"></i></h2>
       <form id="ai-form" aria-label="Ask your question to AI">
         <!-- 질문 입력창 -->
-        <textarea id="user-input" class="user-input" placeholder="Enter your question, e.g., 'What is the capital of France?'" rows="5" required></textarea>
+        <textarea id="user-input" class="user-input" placeholder="How can I help you? Ask the information that you wanna verify or paste the URL!" rows="5" required></textarea>
         <!-- 제출 버튼 -->
         <button type="submit" aria-label="Submit your question to AI">Submit</button>
       </form>
@@ -48,7 +48,7 @@
 
     <!-- AI의 응답을 보여주는 영역 -->
     <div id="response" class="response-placeholder" role="region">
-      Enter a question to get started.
+      Response area
     </div>
   </main>
 

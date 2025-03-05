@@ -55,6 +55,13 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.robotIcon{
+ color:#501874; 
+ font-size: 80px; 
+ text-align: center; 
+ margin-top: 20px;
+}
+
 /* 입력 폼 */
 textarea {
   width: 100%;
