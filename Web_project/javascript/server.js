@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import mongoose from "mongoose";
 
 dotenv.config(); // .env 로드
 
@@ -15,6 +16,20 @@ const PORT = 3000; // 기존 5000포트와 통합
 
 // API 키 로드 확인
 console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
+
+// MongoDB 연결 설정
+mongoose.connect("mongodb://localhost:27017/web_project", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const postSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  timestamp: String,
+});
+
+const Post = mongoose.model("Post", postSchema);
 
 // CORS 활성화
 app.use(cors());
@@ -51,6 +66,29 @@ app.post("/api", async (req, res) => {
     console.error("OpenAI API Error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
+});
+
+// 게시글 저장 엔드포인트
+app.post("/api/posts", async (req, res) => {
+  const { title, content, timestamp } = req.body;
+
+  const newPost = new Post({ title, content, timestamp });
+  await newPost.save();
+
+  res.status(201).json(newPost);
+});
+
+// 게시글 불러오기 엔드포인트
+app.get("/api/posts", async (req, res) => {
+  const posts = await Post.find();
+  res.json(posts);
+});
+
+// 게시글 삭제 엔드포인트
+app.delete("/api/posts/:id", async (req, res) => {
+  const { id } = req.params;
+  await Post.findByIdAndDelete(id);
+  res.status(204).send();
 });
 
 // 서버 실행
