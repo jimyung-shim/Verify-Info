@@ -18,10 +18,7 @@ const PORT = 3000; // 기존 5000포트와 통합
 console.log("Loaded API Key:", process.env.GROQ_API_KEY);
 
 // MongoDB 연결 설정
-mongoose.connect("mongodb://localhost:27017/web_project", {
-  //useNewUrlParser: true,
-  //useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://localhost:27017/web_project");
 
 const groqSchema = new mongoose.Schema({
   title: String,
@@ -72,23 +69,41 @@ app.post("/api", async (req, res) => {
 app.post("/api/groqposts", async (req, res) => {
   const { title, content, timestamp } = req.body;
 
-  const newGroqPost = new GroqPost({ title, content, timestamp });
-  await newGroqPost.save();
+  if (!title || !content || !timestamp) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
-  res.status(201).json(newGroqPost);
+  try {
+    const newGroqPost = new GroqPost({ title, content, timestamp });
+    await newGroqPost.save();
+    res.status(201).json(newGroqPost);
+  } catch (error) {
+    console.error("Error creating post:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 게시글 불러오기 엔드포인트
 app.get("/api/groqposts", async (req, res) => {
-  const groqPosts = await GroqPost.find();
-  res.json(groqPosts);
+  try {
+    const groqPosts = await GroqPost.find();
+    res.json(groqPosts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 게시글 삭제 엔드포인트
 app.delete("/api/groqposts/:id", async (req, res) => {
   const { id } = req.params;
-  await GroqPost.findByIdAndDelete(id);
-  res.status(204).send();
+  try {
+    await GroqPost.findByIdAndDelete(id);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 서버 실행

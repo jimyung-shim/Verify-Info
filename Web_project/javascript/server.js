@@ -18,10 +18,7 @@ const PORT = 3000; // 기존 5000포트와 통합
 console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
 
 // MongoDB 연결 설정
-mongoose.connect("mongodb://localhost:27017/web_project", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://localhost:27017/web_project");
 
 const postSchema = new mongoose.Schema({
   title: String,
@@ -72,23 +69,41 @@ app.post("/api", async (req, res) => {
 app.post("/api/posts", async (req, res) => {
   const { title, content, timestamp } = req.body;
 
-  const newPost = new Post({ title, content, timestamp });
-  await newPost.save();
+  if (!title || !content || !timestamp) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
-  res.status(201).json(newPost);
+  try {
+    const newPost = new Post({ title, content, timestamp });
+    await newPost.save();
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error("Error creating post:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 게시글 불러오기 엔드포인트
 app.get("/api/posts", async (req, res) => {
-  const posts = await Post.find();
-  res.json(posts);
+  try {
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 게시글 삭제 엔드포인트
 app.delete("/api/posts/:id", async (req, res) => {
   const { id } = req.params;
-  await Post.findByIdAndDelete(id);
-  res.status(204).send();
+  try {
+    await Post.findByIdAndDelete(id);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 서버 실행
