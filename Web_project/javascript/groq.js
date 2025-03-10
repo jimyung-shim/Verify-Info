@@ -20,13 +20,13 @@ console.log("Loaded API Key:", process.env.GROQ_API_KEY);
 // MongoDB 연결 설정
 mongoose.connect("mongodb://localhost:27017/web_project");
 
-const groqSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   title: String,
   content: String,
   timestamp: String,
 });
 
-const GroqPost = mongoose.model("GroqPost", groqSchema);
+const Post = mongoose.model("Post", postSchema);
 
 // CORS 활성화
 app.use(cors());
@@ -66,7 +66,7 @@ app.post("/api", async (req, res) => {
 });
 
 // 게시글 저장 엔드포인트
-app.post("/api/groqposts", async (req, res) => {
+app.post("/api/posts", async (req, res) => {
   const { title, content, timestamp } = req.body;
 
   if (!title || !content || !timestamp) {
@@ -74,9 +74,9 @@ app.post("/api/groqposts", async (req, res) => {
   }
 
   try {
-    const newGroqPost = new GroqPost({ title, content, timestamp });
-    await newGroqPost.save();
-    res.status(201).json(newGroqPost);
+    const newPost = new Post({ title, content, timestamp });
+    await newPost.save();
+    res.status(201).json(newPost);
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -84,10 +84,10 @@ app.post("/api/groqposts", async (req, res) => {
 });
 
 // 게시글 불러오기 엔드포인트
-app.get("/api/groqposts", async (req, res) => {
+app.get("/api/posts", async (req, res) => {
   try {
-    const groqPosts = await GroqPost.find();
-    res.json(groqPosts);
+    const Posts = await Post.find();
+    res.json(Posts);
   } catch (error) {
     console.error("Error fetching posts:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -95,10 +95,10 @@ app.get("/api/groqposts", async (req, res) => {
 });
 
 // 게시글 삭제 엔드포인트
-app.delete("/api/groqposts/:id", async (req, res) => {
+app.delete("/api/posts/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    await GroqPost.findByIdAndDelete(id);
+    await Post.findByIdAndDelete(id);
     res.status(204).send();
   } catch (error) {
     console.error("Error deleting post:", error);

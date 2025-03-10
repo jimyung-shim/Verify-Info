@@ -12,7 +12,7 @@ document.getElementById("write-post-form").addEventListener("submit", async func
   const post = { title, content, timestamp };
 
   // 서버에 게시글 저장
-  const response = await fetch("http://localhost:3000/api/groqposts", {
+  const response = await fetch("http://localhost:3000/api/posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

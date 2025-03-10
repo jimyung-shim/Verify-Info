@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const postsContainer = document.querySelector(".posts");
 
   // 서버에서 게시글 가져오기
-  const response = await fetch("http://localhost:3000/api/groqposts");
+  const response = await fetch("http://localhost:3000/api/posts");
   const posts = await response.json();
 
   // 게시글이 없을 때 메시지 표시
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const id = e.target.getAttribute("data-id");
 
       // 게시글 삭제
-      await fetch(`http://localhost:3000/api/groqposts/${id}`, {
+      await fetch(`http://localhost:3000/api/posts/${id}`, {
         method: "DELETE",
       });
 
