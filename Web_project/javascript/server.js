@@ -20,7 +20,9 @@ const PORT = 3000; // 기존 5000포트와 통합
 console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
 
 // MongoDB 연결 설정
-mongoose.connect("mongodb://localhost:27017/web_project");
+mongoose.connect("mongodb://localhost:27017/web_project")
+.then(() => console.log("MongoDB connected"))
+.catch((error) => console.error("MongoDB connection error:", error));
 
 // CORS 활성화
 app.use(cors());

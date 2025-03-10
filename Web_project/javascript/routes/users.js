@@ -9,9 +9,12 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   const { username, id, password } = req.body;
 
+  console.log("Received sign-up request:", req.body); // Add logging
+
   try {
     const user = new User({ username, id, password });
     await user.save();
+    console.log("User saved successfully:", user); // Add logging
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error("Error registering user:", error);
