@@ -27,7 +27,12 @@ AI를 활용하여 정보를 분석하고, AI를 통해 알 수 없는 정보는
 - Node.js (Express.js 기반 서버)
 - MongoDB
 - OpenAI API (AI 분석 기능)
-- 사용된 라이브러리 패키지: express, cors, dotenv, openai, groq-sdk, mongoose
+- 사용된 라이브러리 패키지: { 
+    express, cors, dotenv - 서버 제작
+     openai, groq-sdk - Chat GPT, Llama 탑재
+     mongoose - MongoDB 연결
+     bcryptjs, jsonwebtoken - 회원가입, 로그인 기능 구현
+}
 
 
 ## 🚀 프로젝트 실행 방법
@@ -71,7 +76,6 @@ Server running at http://localhost:3000
 `````````````````````````````````````````````````
 
 ## 📌 향후 개발 계획
-- 🔹 **회원가입 및 로그인 기능 추가**
 - 🔹 **게시글 좋아요 및 댓글 기능 추가**
 - 🔹 **정보 신뢰도 평가 시스템 구축**
 - 🔹 **UI/UX 디자인 개선**
