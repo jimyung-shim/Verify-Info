@@ -5,6 +5,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import mongoose from "mongoose";
+import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 dotenv.config(); // .env 로드
 
@@ -19,14 +21,6 @@ console.log("Loaded API Key:", process.env.OPENAI_API_KEY);
 
 // MongoDB 연결 설정
 mongoose.connect("mongodb://localhost:27017/web_project");
-
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  timestamp: String,
-});
-
-const Post = mongoose.model("Post", postSchema);
 
 // CORS 활성화
 app.use(cors());
@@ -65,46 +59,9 @@ app.post("/api", async (req, res) => {
   }
 });
 
-// 게시글 저장 엔드포인트
-app.post("/api/posts", async (req, res) => {
-  const { title, content, timestamp } = req.body;
-
-  if (!title || !content || !timestamp) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  try {
-    const newPost = new Post({ title, content, timestamp });
-    await newPost.save();
-    res.status(201).json(newPost);
-  } catch (error) {
-    console.error("Error creating post:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-// 게시글 불러오기 엔드포인트
-app.get("/api/posts", async (req, res) => {
-  try {
-    const posts = await Post.find();
-    res.json(posts);
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-// 게시글 삭제 엔드포인트
-app.delete("/api/posts/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    await Post.findByIdAndDelete(id);
-    res.status(204).send();
-  } catch (error) {
-    console.error("Error deleting post:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+// Use the routes
+app.use("/api/posts", postRoutes);
+app.use("/api/users", userRoutes);
 
 // 서버 실행
 app.listen(PORT, () => {
