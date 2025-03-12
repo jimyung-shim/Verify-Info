@@ -61,7 +61,7 @@ app.post("/api", async (req, res) => {
   }
 });
 
-// Use the routes
+// 라우트 설정
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 

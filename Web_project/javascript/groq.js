@@ -5,6 +5,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Groq from "groq-sdk";
 import mongoose from "mongoose";
+import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 dotenv.config(); // .env 로드
 
@@ -18,15 +20,9 @@ const PORT = 3000; // 기존 5000포트와 통합
 console.log("Loaded API Key:", process.env.GROQ_API_KEY);
 
 // MongoDB 연결 설정
-mongoose.connect("mongodb://localhost:27017/web_project");
-
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  timestamp: String,
-});
-
-const Post = mongoose.model("Post", postSchema);
+mongoose.connect("mongodb://localhost:27017/web_project")
+.then(() => console.log("MongoDB connected"))
+.catch((error) => console.error("MongoDB connection error:", error));
 
 // CORS 활성화
 app.use(cors());
@@ -53,7 +49,7 @@ app.post("/api", async (req, res) => {
   try {
     // Groq API 호출
     const response = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile", // GPT 모델 선정
+      model: "llama-3.3-70b-versatile", // AI 모델 선정
       messages: [{ role: "user", content: question }],
     });
 
@@ -65,46 +61,9 @@ app.post("/api", async (req, res) => {
   }
 });
 
-// 게시글 저장 엔드포인트
-app.post("/api/posts", async (req, res) => {
-  const { title, content, timestamp } = req.body;
-
-  if (!title || !content || !timestamp) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  try {
-    const newPost = new Post({ title, content, timestamp });
-    await newPost.save();
-    res.status(201).json(newPost);
-  } catch (error) {
-    console.error("Error creating post:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-// 게시글 불러오기 엔드포인트
-app.get("/api/posts", async (req, res) => {
-  try {
-    const Posts = await Post.find();
-    res.json(Posts);
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-// 게시글 삭제 엔드포인트
-app.delete("/api/posts/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    await Post.findByIdAndDelete(id);
-    res.status(204).send();
-  } catch (error) {
-    console.error("Error deleting post:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+// 라우트 설정정
+app.use("/api/posts", postRoutes);
+app.use("/api/users", userRoutes);
 
 // 서버 실행
 app.listen(PORT, () => {
