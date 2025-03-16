@@ -7,9 +7,9 @@ AI를 활용하여 정보를 분석하고, AI를 통해 알 수 없는 정보는
 ## 🎯 주요 기능
 ### ✅ AI 기반 정보 검증 시스템
 - 사용자가 **정보 또는 URL을 제출**하면 AI가 자료들을 제공.
-- 현재 main 브랜치에 OpenAI API 서버 페이지(server.js)와 Groq API 서버 페이지(groq.js)가 있는데, OpenAI API 서버 페이지는 Chat GPT를, Groq API 페이지는 Llama를 사용할 수 있습니다.
+- 현재 main 브랜치에 OpenAI API 서버 페이지(server.js)와 Groq API 서버 페이지(groq.js)가 있는데, OpenAI API 서버 페이지는 Chat GPT를, Groq API 페이지는 Llama를 탑재함함.
 아직 OpenAI API 비용을 결재하지 않아 Chat GPT는 작동할 수 없고, 대신에 임시방편으로 Groq API키를 가져와
-제한적으로나마 무료로 사용할 수 있는 Llama를 탑재한 버전이 있습니다.
+제한적으로나마 무료로 사용할 수 있는 Llama를 탑재한 버전이 있음.
 
 ### ✅ 커뮤니티 게시판
 - 사용자가 직접 **게시글을 작성하고, 정보를 공유**할 수 있는 공간.
@@ -28,9 +28,12 @@ AI를 활용하여 정보를 분석하고, AI를 통해 알 수 없는 정보는
 - MongoDB
 - OpenAI API (AI 분석 기능)
 - 사용된 라이브러리 패키지: { 
-    express, cors, dotenv - 서버 제작
+    express, cors, dotenv - 서버 구현현
+
      openai, groq-sdk - Chat GPT, Llama 탑재
+
      mongoose - MongoDB 연결
+
      bcryptjs, jsonwebtoken - 회원가입, 로그인 기능 구현
 }
 
@@ -46,7 +49,6 @@ Groq API키
 `````````````````````````````````````````````.env
 GROQ_API_KEY=your_groq_api_key
 `````````````````````````````````````````````````
-API 키는 협업할때 드립니다.
 
 ### 2️⃣ **서버 실행**
 OpenAI API 서버 실행
