@@ -33,6 +33,10 @@ app.use(express.json());
 // 정적 파일 제공 (HTML, CSS, JS 파일)
 app.use(express.static(__dirname));
 
+app.use(express.static(path.join(__dirname, '../html')));
+app.use(express.static(path.join(__dirname, '../css')));
+app.use(express.static(path.join(__dirname, 'javascript')));
+
 // Groq API 설정
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -64,6 +68,10 @@ app.post("/api", async (req, res) => {
 // 라우트 설정
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
+
+app.get('/', (req,res)=>{
+  res.sendFile(path.join(__dirname,'../html/main_page.html'));
+});
 
 // 서버 실행
 app.listen(PORT, () => {
